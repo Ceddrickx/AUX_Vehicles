@@ -240,8 +240,12 @@ const colorMap = {
   "Champagne Silver": "#c9b994"
 };
 
-let activeCategory = "All Vehicles";
-let searchTerm = "";
+const urlParams = new URLSearchParams(window.location.search);
+const requestedCategory = urlParams.get("category") || "";
+const validCategories = ["All Vehicles", "Hatchbacks & Sedan", "SUVs", "Vans & Pickups"];
+let activeCategory = validCategories.includes(requestedCategory) ? requestedCategory : "All Vehicles";
+const initialSearch = urlParams.get("search") || "";
+let searchTerm = initialSearch;
 let sortMode = "recommended";
 const expandedIds = new Set();
 
@@ -254,6 +258,41 @@ const sortSelect = document.querySelector("#sortSelect");
 const searchDrawer = document.querySelector("#searchDrawer");
 const mobilePanel = document.querySelector("#mobilePanel");
 const toast = document.querySelector("#toast");
+const navLinks = document.querySelectorAll(".desktop-nav a");
+let navigationInProgress = false;
+let navigationEndTimer;
+
+if (catalogSearch) catalogSearch.value = initialSearch;
+if (siteSearch) siteSearch.value = initialSearch;
+categoryButtons.forEach(button => {
+  button.classList.toggle("active", button.dataset.category === activeCategory);
+});
+
+function updateActiveNav() {
+  const sectionLinks = [...navLinks].filter(link => link.hash && document.querySelector(link.hash));
+  if (!sectionLinks.length) return;
+
+  if (navigationInProgress) return;
+
+  let currentSection = sectionLinks[0].hash;
+  let closestDistance = Infinity;
+  const viewportCenter = window.innerHeight / 2;
+
+  sectionLinks.forEach(link => {
+    const section = document.querySelector(link.hash);
+    if (!section) return;
+    const sectionCenter = section.getBoundingClientRect().top + (section.offsetHeight / 2);
+    const distance = Math.abs(sectionCenter - viewportCenter);
+    if (distance < closestDistance) {
+      currentSection = link.hash;
+      closestDistance = distance;
+    }
+  });
+
+  navLinks.forEach(link => {
+    link.classList.toggle("active", link.hash === currentSection);
+  });
+}
 
 function peso(value) {
   return new Intl.NumberFormat("en-PH", {
@@ -311,6 +350,7 @@ function filteredVehicles() {
 }
 
 function renderVehicles() {
+  if (!grid) return;
   const list = filteredVehicles();
   count.textContent = `${list.length} ${list.length === 1 ? "Vehicle" : "Vehicles"}`;
 
@@ -364,35 +404,53 @@ function showToast(message) {
 }
 
 categoryButtons.forEach(button => {
-  button.addEventListener("click", () => setCategory(button.dataset.category));
+  button.addEventListener("click", () => {
+    if (grid) setCategory(button.dataset.category);
+  });
 });
 
-grid.addEventListener("click", event => {
-  const button = event.target.closest(".detail-button");
-  if (!button) return;
-  const id = Number(button.dataset.id);
-  if (expandedIds.has(id)) expandedIds.delete(id);
-  else expandedIds.add(id);
-  renderVehicles();
-});
+if (grid) {
+  grid.addEventListener("click", event => {
+    const button = event.target.closest(".detail-button");
+    if (!button) return;
+    const id = Number(button.dataset.id);
+    if (expandedIds.has(id)) expandedIds.delete(id);
+    else expandedIds.add(id);
+    renderVehicles();
+  });
+}
 
-catalogSearch.addEventListener("input", event => {
-  searchTerm = event.target.value;
-  siteSearch.value = searchTerm;
-  renderVehicles();
-});
+if (catalogSearch) {
+  catalogSearch.addEventListener("input", event => {
+    searchTerm = event.target.value;
+    siteSearch.value = searchTerm;
+    renderVehicles();
+  });
+}
 
-siteSearch.addEventListener("input", event => {
-  searchTerm = event.target.value;
-  catalogSearch.value = searchTerm;
-  renderVehicles();
-  document.querySelector("#vehicles").scrollIntoView({ behavior: "smooth" });
-});
+if (siteSearch) {
+  siteSearch.addEventListener("input", event => {
+    searchTerm = event.target.value;
+    if (catalogSearch) catalogSearch.value = searchTerm;
+    renderVehicles();
+    if (document.querySelector("#vehicles")) {
+      document.querySelector("#vehicles").scrollIntoView({ behavior: "smooth" });
+    }
+  });
 
-sortSelect.addEventListener("change", event => {
-  sortMode = event.target.value;
-  renderVehicles();
-});
+  siteSearch.addEventListener("keydown", event => {
+    if (event.key !== "Enter" || grid) return;
+    const query = siteSearch.value.trim();
+    window.location.href = `vehicles.html${query ? `?search=${encodeURIComponent(query)}` : ""}`;
+  });
+}
+
+if (sortSelect) {
+  sortSelect.addEventListener("change", event => {
+    sortMode = event.target.value;
+    renderVehicles();
+  });
+}
 
 document.querySelector("#openSearch").addEventListener("click", openSearchDrawer);
 document.querySelector("#mobileSearch").addEventListener("click", () => {
@@ -420,6 +478,25 @@ document.querySelectorAll(".mobile-panel a").forEach(link => {
   });
 });
 
+navLinks.forEach(link => {
+  if (!link.hash || !document.querySelector(link.hash)) return;
+  link.addEventListener("click", event => {
+    event.preventDefault();
+    navigationInProgress = true;
+    navLinks.forEach(navLink => navLink.classList.remove("active"));
+    link.classList.add("active");
+    document.querySelector(link.hash).scrollIntoView({
+      behavior: "smooth",
+      block: "center"
+    });
+    history.replaceState(null, "", link.hash);
+    clearTimeout(navigationEndTimer);
+    navigationEndTimer = setTimeout(() => {
+      navigationInProgress = false;
+    }, 1200);
+  });
+});
+
 document.querySelectorAll("[data-scroll]").forEach(button => {
   button.addEventListener("click", () => {
     document.querySelector(button.dataset.scroll).scrollIntoView({ behavior: "smooth" });
@@ -427,17 +504,23 @@ document.querySelectorAll("[data-scroll]").forEach(button => {
 });
 
 document.querySelectorAll("[data-footer-category]").forEach(button => {
-  button.addEventListener("click", () => setCategory(button.dataset.footerCategory));
+  button.addEventListener("click", () => {
+    if (grid) setCategory(button.dataset.footerCategory);
+  });
 });
 
 document.querySelectorAll("[data-message]").forEach(button => {
   button.addEventListener("click", () => showToast(button.dataset.message));
 });
 
-document.querySelector("#requestInfo").addEventListener("click", () => showToast("Request Information"));
+const requestInfo = document.querySelector("#requestInfo");
+if (requestInfo) {
+  requestInfo.addEventListener("click", () => showToast("Request Information"));
+}
 
 window.addEventListener("scroll", () => {
   document.querySelector("#siteHeader").classList.toggle("scrolled", window.scrollY > 24);
+  if (!navigationInProgress) updateActiveNav();
 });
 
 document.addEventListener("keydown", event => {
@@ -448,3 +531,4 @@ document.addEventListener("keydown", event => {
 });
 
 renderVehicles();
+updateActiveNav();
