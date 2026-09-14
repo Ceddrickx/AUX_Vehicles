@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AUX Automotive | Explore Vehicles</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header" id="siteHeader">
+    <a class="brand" href="index.html" aria-label="AUX home">
+      <img class="aux-logo" src="assets/aux-logo.png" alt="AUX Automotive">
+    </a>
+    <nav class="desktop-nav" aria-label="Primary navigation">
+      <a href="index.html">Home</a>
+      <a class="active" href="vehicles.html">Explore Vehicles</a>
+      <a href="index.html#about">About AUX</a>
+      <a href="index.html#services">Services</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+    <div class="header-actions">
+      <button class="icon-button" id="openSearch" type="button" aria-label="Open search"><span></span></button>
+      <button class="menu-button" id="menuButton" type="button" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <aside class="mobile-panel" id="mobilePanel" aria-hidden="true">
+    <div class="mobile-panel-top"><a class="brand small" href="index.html"><img class="aux-logo" src="assets/aux-logo.png" alt="AUX Automotive"></a><button class="close-button" id="closeMenu" type="button">Close</button></div>
+    <a href="index.html">Home</a><a href="vehicles.html">Explore Vehicles</a><a href="index.html#about">About AUX</a><a href="index.html#services">Services</a><a href="index.html#contact">Contact</a>
+    <button class="mobile-search" id="mobileSearch" type="button">Search Vehicles</button>
+  </aside>
+  <div class="search-drawer" id="searchDrawer" aria-hidden="true">
+    <div class="search-inner"><label for="siteSearch">Search AUX vehicles</label><input id="siteSearch" type="search" placeholder="Search by name, SUV, pickup, comfort..."><button id="closeSearch" type="button">Close</button></div>
+  </div>
+
+  <main>
+    <section class="catalog-page-intro">
+      <p class="eyebrow">2026 model year</p>
+      <h1>Explore AUX Vehicles</h1>
+      <p>Compare the complete AUX lineup and find the vehicle built for your everyday journey.</p>
+    </section>
+    <section class="vehicle-explorer" id="vehicles">
+      <aside class="category-rail">
+        <p>New Vehicles</p>
+        <button class="category-link active" data-category="All Vehicles" type="button">All Vehicles</button>
+        <button class="category-link" data-category="Hatchbacks & Sedan" type="button">Hatchbacks & Sedan</button>
+        <button class="category-link" data-category="SUVs" type="button">SUVs</button>
+        <button class="category-link" data-category="Vans & Pickups" type="button">Vans & Pickups</button>
+      </aside>
+      <div class="catalog-area">
+        <div class="catalog-top"><div><p class="eyebrow">Product information</p><h2>2026 AUX Lineup</h2><span id="vehicleCount">12 Vehicles</span></div><div class="catalog-controls"><label>Search<input id="catalogSearch" type="search" placeholder="Name, category, description"></label><label>Sort<select id="sortSelect"><option value="recommended">Recommended</option><option value="priceAsc">Price: Low to High</option><option value="priceDesc">Price: High to Low</option><option value="nameAsc">Name: A-Z</option><option value="nameDesc">Name: Z-A</option></select></label></div></div>
+        <div class="vehicle-grid" id="vehicleGrid" aria-live="polite"></div>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer"><div class="footer-brand"><div class="brand invert"><img class="aux-logo" src="assets/aux-logo.png" alt="AUX Automotive"></div><p>© 2026 AUX Automotive. All Rights Reserved.</p></div><div class="footer-links"><div><h3>Explore</h3><a href="index.html">Home</a><a href="vehicles.html">Explore Vehicles</a><a href="index.html#about">About AUX</a></div><div><h3>Vehicles</h3><button data-footer-category="Hatchbacks & Sedan" type="button">Hatchbacks & Sedan</button><button data-footer-category="SUVs" type="button">SUVs</button><button data-footer-category="Vans & Pickups" type="button">Vans & Pickups</button></div></div></footer>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="script.js"></script>
+</body>
+</html>
