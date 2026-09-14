@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AUX Automotive | Explore Vehicles</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header" id="siteHeader">
+    <a class="brand" href="#home" aria-label="AUX home">
+      <span class="aux-emblem" aria-hidden="true">
+        <svg viewBox="0 0 120 74" role="img">
+          <path d="M60 5 108 35 60 69 12 35Z"></path>
+          <path d="M35 53 60 16l25 37"></path>
+          <path d="M43 45h34"></path>
+          <path d="M42 23v19c0 12 8 20 18 20s18-8 18-20V23"></path>
+          <path d="m31 18 58 40M89 18 31 58"></path>
+        </svg>
+      </span>
+      <span class="brand-word">AUX</span>
+    </a>
+
+    <nav class="desktop-nav" aria-label="Primary navigation">
+      <a href="#home">Home</a>
+      <a class="active" href="#vehicles">Explore Vehicles</a>
+      <a href="#about">About AUX</a>
+      <a href="#services">Services</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <div class="header-actions">
+      <button class="icon-button" id="openSearch" type="button" aria-label="Open search">
+        <span></span>
+      </button>
+      <button class="menu-button" id="menuButton" type="button" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <aside class="mobile-panel" id="mobilePanel" aria-hidden="true">
+    <div class="mobile-panel-top">
+      <div class="brand small">
+        <span class="aux-emblem" aria-hidden="true">
+          <svg viewBox="0 0 120 74"><path d="M60 5 108 35 60 69 12 35Z"></path><path d="M35 53 60 16l25 37"></path><path d="M43 45h34"></path><path d="M42 23v19c0 12 8 20 18 20s18-8 18-20V23"></path><path d="m31 18 58 40M89 18 31 58"></path></svg>
+        </span>
+        <span class="brand-word">AUX</span>
+      </div>
+      <button class="close-button" id="closeMenu" type="button">Close</button>
+    </div>
+    <a href="#home">Home</a>
+    <a href="#vehicles">Explore Vehicles</a>
+    <a href="#about">About AUX</a>
+    <a href="#services">Services</a>
+    <a href="#contact">Contact</a>
+    <button class="mobile-search" id="mobileSearch" type="button">Search Vehicles</button>
+  </aside>
+
+  <div class="search-drawer" id="searchDrawer" aria-hidden="true">
+    <div class="search-inner">
+      <label for="siteSearch">Search AUX vehicles</label>
+      <input id="siteSearch" type="search" placeholder="Search by name, SUV, pickup, comfort...">
+      <button id="closeSearch" type="button">Close</button>
+    </div>
+  </div>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-copy">
+        <p class="eyebrow">2026 model year</p>
+        <h1>Explore AUX Vehicles</h1>
+        <p>Discover the 2026 AUX lineup designed for every journey.</p>
+        <button class="primary-cta" data-scroll="#vehicles" type="button">Explore Vehicles</button>
+      </div>
+      <div class="hero-visual" aria-hidden="true">
+        <img class="hero-car" src="assets/aux-hero-blue-suv.png" alt="">
+      </div>
+    </section>
+
+    <section class="vehicle-explorer" id="vehicles">
+      <aside class="category-rail">
+        <p>New Vehicles</p>
+        <button class="category-link active" data-category="All Vehicles" type="button">All Vehicles</button>
+        <button class="category-link" data-category="Hatchbacks & Sedan" type="button">Hatchbacks & Sedan</button>
+        <button class="category-link" data-category="SUVs" type="button">SUVs</button>
+        <button class="category-link" data-category="Vans & Pickups" type="button">Vans & Pickups</button>
+      </aside>
+
+      <div class="catalog-area">
+        <div class="catalog-top">
+          <div>
+            <p class="eyebrow">Explore Vehicles</p>
+            <h2>2026 AUX Lineup</h2>
+            <span id="vehicleCount">12 Vehicles</span>
+          </div>
+          <div class="catalog-controls">
+            <label>
+              Search
+              <input id="catalogSearch" type="search" placeholder="Name, category, description">
+            </label>
+            <label>
+              Sort
+              <select id="sortSelect">
+                <option value="recommended">Recommended</option>
+                <option value="priceAsc">Price: Low to High</option>
+                <option value="priceDesc">Price: High to Low</option>
+                <option value="nameAsc">Name: A-Z</option>
+                <option value="nameDesc">Name: Z-A</option>
+              </select>
+            </label>
+          </div>
+        </div>
+        <div class="vehicle-grid" id="vehicleGrid" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <section class="feature-band" id="services">
+      <p class="eyebrow">AUX confidence</p>
+      <h2>Engineered For Every Journey</h2>
+      <div class="feature-grid">
+        <article>
+          <span class="feature-icon">+</span>
+          <h3>Advanced Safety</h3>
+          <p>Intelligent safety technology designed to help protect every passenger.</p>
+        </article>
+        <article>
+          <span class="feature-icon">•</span>
+          <h3>Smart Technology</h3>
+          <p>Connected technology designed for a modern driving experience.</p>
+        </article>
+        <article>
+          <span class="feature-icon">□</span>
+          <h3>Premium Comfort</h3>
+          <p>A refined interior designed for everyday comfort.</p>
+        </article>
+        <article>
+          <span class="feature-icon">›</span>
+          <h3>Confident Performance</h3>
+          <p>Responsive performance for city driving and long journeys.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="about-section" id="about">
+      <div>
+        <p class="eyebrow">About AUX</p>
+        <h2>Precision Made Practical</h2>
+      </div>
+      <p>AUX Automotive is a fictional mobility brand focused on crisp design, quiet cabins, intelligent safety, and transparent prototype pricing for Philippine drivers.</p>
+    </section>
+
+    <section class="contact-strip" id="contact">
+      <div>
+        <p class="eyebrow">Contact</p>
+        <h2>Ready To Configure Your AUX?</h2>
+      </div>
+      <button class="primary-cta dark" id="requestInfo" type="button">Request Information</button>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-brand">
+      <div class="brand invert">
+        <span class="aux-emblem" aria-hidden="true">
+          <svg viewBox="0 0 120 74"><path d="M60 5 108 35 60 69 12 35Z"></path><path d="M35 53 60 16l25 37"></path><path d="M43 45h34"></path><path d="M42 23v19c0 12 8 20 18 20s18-8 18-20V23"></path><path d="m31 18 58 40M89 18 31 58"></path></svg>
+        </span>
+        <span class="brand-word">AUX</span>
+      </div>
+      <p>© 2026 AUX Automotive. All Rights Reserved.</p>
+    </div>
+    <div class="footer-links">
+      <div>
+        <h3>Explore</h3>
+        <button data-scroll="#home" type="button">Home</button>
+        <button data-scroll="#vehicles" type="button">Explore Vehicles</button>
+        <button data-scroll="#about" type="button">About AUX</button>
+        <button data-scroll="#services" type="button">Services</button>
+        <button data-scroll="#contact" type="button">Contact</button>
+      </div>
+      <div>
+        <h3>Vehicles</h3>
+        <button data-footer-category="Hatchbacks & Sedan" type="button">Hatchbacks & Sedan</button>
+        <button data-footer-category="SUVs" type="button">SUVs</button>
+        <button data-footer-category="Vans & Pickups" type="button">Vans & Pickups</button>
+      </div>
+      <div>
+        <h3>Customer</h3>
+        <button data-message="Contact AUX" type="button">Contact AUX</button>
+        <button data-message="Financing" type="button">Financing</button>
+        <button data-message="Request Information" type="button">Request Information</button>
+        <button data-message="Customer Support" type="button">Customer Support</button>
+      </div>
+      <div>
+        <h3>Social</h3>
+        <button data-message="Facebook" type="button">Facebook</button>
+        <button data-message="Instagram" type="button">Instagram</button>
+        <button data-message="YouTube" type="button">YouTube</button>
+      </div>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="script.js"></script>
+</body>
+</html>
