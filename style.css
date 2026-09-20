@@ -551,6 +551,117 @@ h1 {
   color: var(--ink);
 }
 
+.model-button {
+  border: 1px solid var(--ink);
+  background: var(--ink);
+  color: var(--white);
+  padding: 11px 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 11px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.model-button:hover {
+  background: var(--red);
+  border-color: var(--red);
+}
+
+.card-model-button {
+  margin-left: 4px;
+}
+
+.model-viewer-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: none;
+  flex-direction: column;
+  background: #090d12;
+  color: var(--white);
+}
+
+.model-viewer-overlay.open {
+  display: flex;
+}
+
+.model-viewer-toolbar {
+  min-height: 76px;
+  padding: 14px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  background: rgba(9, 13, 18, 0.94);
+  border-bottom: 1px solid rgba(255,255,255,0.15);
+}
+
+.model-viewer-toolbar button {
+  border: 1px solid rgba(255,255,255,0.55);
+  background: transparent;
+  color: var(--white);
+  padding: 11px 14px;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.model-viewer-toolbar button:hover {
+  border-color: var(--red);
+  color: #ff6b70;
+}
+
+.model-viewer-actions {
+  display: flex;
+  gap: 10px;
+}
+
+#vehicleModel {
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  flex: 1;
+  background: radial-gradient(circle at center, #29333e 0%, #090d12 70%);
+}
+
+.model-loading {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #d7dde3;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 12px;
+  pointer-events: none;
+}
+
+.model-loading.hidden {
+  display: none;
+}
+
+.model-fallback {
+  position: absolute;
+  inset: 76px 0 0;
+  width: 100%;
+  height: calc(100% - 76px);
+  object-fit: contain;
+  padding: 12vh 20vw;
+  opacity: 0.28;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.model-fallback.hidden {
+  display: none;
+}
+
+#vehicleModel {
+  position: relative;
+  z-index: 1;
+}
+
 .details-panel {
   max-height: 0;
   overflow: hidden;
