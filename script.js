@@ -1,233 +1,43 @@
-const vehicles = [
-  {
-    id: 1,
-    name: "AUX A1",
-    category: "Hatchbacks & Sedan",
-    type: "Compact Hatchback",
-    description: "A nimble city hatchback built for first-time owners, tight streets, and efficient daily commuting with surprising cabin flexibility.",
-    price: 895000,
-    downpayment: 179000,
-    monthlyPayment: 16800,
-    colors: ["Pearl White", "Signal Red", "Titanium Silver", "Deep Blue"],
-    engine: "1.3L Dual VVT",
-    transmission: "CVT",
-    fuel: "Gasoline",
-    seats: 5,
-    features: ["Pre-Collision Assist", "Lane Trace Alert", "Rear Camera", "Wireless Apple CarPlay", "Wireless Android Auto"],
-    body: "hatch",
-    color: "#dfe4e8",
-    image: "assets/aux-hatch-sedan-a1.png"
-  },
-  {
-    id: 2,
-    name: "AUX A2",
-    category: "Hatchbacks & Sedan",
-    type: "Premium Hatchback",
-    description: "A refined hatchback for active urban drivers who want agile handling, richer materials, and connected technology.",
-    price: 1125000,
-    downpayment: 225000,
-    monthlyPayment: 20500,
-    colors: ["Obsidian Black", "Pearl White", "Titanium Silver", "Deep Blue"],
-    engine: "1.5L Dynamic Force",
-    transmission: "CVT",
-    fuel: "Gasoline",
-    seats: 5,
-    features: ["Adaptive Cruise Control", "Blind Spot Monitor", "Digital Cluster", "Smart Key", "Automatic Emergency Braking"],
-    body: "hatch",
-    color: "#9aa6ad",
-    image: "assets/aux-hatch-sedan-a2.png"
-  },
-  {
-    id: 3,
-    name: "AUX S1",
-    category: "Hatchbacks & Sedan",
-    type: "Compact Sedan",
-    description: "A balanced compact sedan designed for families and professionals seeking dependable comfort and low running costs.",
-    price: 1050000,
-    downpayment: 210000,
-    monthlyPayment: 19500,
-    colors: ["Pearl White", "Graphite Gray", "Titanium Silver", "Deep Blue"],
-    engine: "1.5L Smart Hybrid",
-    transmission: "E-CVT",
-    fuel: "Hybrid",
-    seats: 5,
-    features: ["Lane Keep Assist", "360° Camera", "Automatic Climate Control", "Wireless Charging", "Rear Cross Traffic Alert"],
-    body: "sedan",
-    color: "#f4f5f5",
-    image: "assets/aux-hatch-sedan-s1.png"
-  },
-  {
-    id: 4,
-    name: "AUX S2",
-    category: "Hatchbacks & Sedan",
-    type: "Executive Sedan",
-    description: "A composed sedan for long-distance comfort, quiet cruising, and premium appointments without excess.",
-    price: 1650000,
-    downpayment: 330000,
-    monthlyPayment: 29700,
-    colors: ["Obsidian Black", "Pearl White", "Graphite Gray", "Deep Blue"],
-    engine: "2.0L Turbocharged",
-    transmission: "8-Speed Automatic",
-    fuel: "Gasoline",
-    seats: 5,
-    features: ["Adaptive Cruise Control", "Panoramic Roof", "Ventilated Seats", "Digital Instrument Cluster", "Automatic Emergency Braking"],
-    body: "sedan",
-    color: "#c8cdd1",
-    image: "assets/aux-hatch-sedan-s2.png"
-  },
-  {
-    id: 5,
-    name: "AUX X3",
-    category: "SUVs",
-    type: "Compact SUV",
-    description: "A confident compact SUV with elevated visibility, flexible cargo space, and smooth city-to-weekend performance.",
-    price: 1450000,
-    downpayment: 290000,
-    monthlyPayment: 26800,
-    colors: ["Obsidian Black", "Pearl White", "Forest Green", "Titanium Silver"],
-    engine: "1.5L Turbocharged",
-    transmission: "7-Speed DCT",
-    fuel: "Gasoline",
-    seats: 5,
-    features: ["Adaptive Cruise Control", "Lane Keep Assist", "Roof Rails", "360° Camera", "Drive Mode Select"],
-    body: "suv",
-    color: "#d7dcde",
-    image: "assets/aux-suv-x3-new.png"
-  },
-  {
-    id: 6,
-    name: "AUX X5",
-    category: "SUVs",
-    type: "Premium Mid-Size SUV",
-    description: "Designed for confident everyday driving with premium comfort, intelligent performance, and generous family space.",
-    price: 1850000,
-    downpayment: 370000,
-    monthlyPayment: 32500,
-    colors: ["Obsidian Black", "Pearl White", "Titanium Silver", "Deep Blue", "Graphite Gray"],
-    engine: "2.0L Turbocharged",
-    transmission: "8-Speed Automatic",
-    fuel: "Gasoline",
-    seats: 5,
-    features: ["Adaptive Cruise Control", "Lane Keep Assist", "360° Camera", "Digital Instrument Cluster", "Wireless Apple CarPlay", "Wireless Android Auto", "Panoramic Roof", "Automatic Emergency Braking"],
-    body: "suv",
-    color: "#f7f7f5",
-    image: "assets/aux-suv-x5-new.png"
-  },
-  {
-    id: 7,
-    name: "AUX X7",
-    category: "SUVs",
-    type: "Three-Row SUV",
-    description: "A spacious three-row SUV for large families, road trips, and daily comfort with advanced driver assistance.",
-    price: 2380000,
-    downpayment: 476000,
-    monthlyPayment: 41500,
-    colors: ["Obsidian Black", "Pearl White", "Graphite Gray", "Deep Blue"],
-    engine: "2.4L Turbo Hybrid",
-    transmission: "8-Speed Automatic",
-    fuel: "Hybrid",
-    seats: 7,
-    features: ["Panoramic Camera", "Captain Seats", "Adaptive Cruise Control", "Rear Occupant Alert", "Power Tailgate"],
-    body: "suv",
-    color: "#bfc7cc",
-    image: "assets/aux-suv-x7-new.png"
-  },
-  {
-    id: 8,
-    name: "AUX X9",
-    category: "SUVs",
-    type: "Flagship SUV",
-    description: "A flagship SUV tuned for quiet strength, executive space, and effortless touring across changing road conditions.",
-    price: 3150000,
-    downpayment: 630000,
-    monthlyPayment: 54800,
-    colors: ["Obsidian Black", "Pearl White", "Graphite Gray", "Champagne Silver"],
-    engine: "3.0L Twin-Turbo Hybrid",
-    transmission: "10-Speed Automatic",
-    fuel: "Hybrid",
-    seats: 7,
-    features: ["Air Suspension", "Massaging Front Seats", "Head-Up Display", "Adaptive High Beam", "Premium Audio"],
-    body: "suv",
-    color: "#e9e5dc",
-    image: "assets/aux-suv-x9-new.png"
-  },
-  {
-    id: 9,
-    name: "AUX V1",
-    category: "Vans & Pickups",
-    type: "Compact MPV",
-    description: "A flexible people mover created for growing households, tight parking, and everyday versatility.",
-    price: 1280000,
-    downpayment: 256000,
-    monthlyPayment: 23600,
-    colors: ["Pearl White", "Titanium Silver", "Graphite Gray", "Deep Blue"],
-    engine: "1.5L Dual VVT",
-    transmission: "CVT",
-    fuel: "Gasoline",
-    seats: 7,
-    features: ["Flexible Third Row", "Rear Camera", "Stability Control", "Wireless Android Auto", "Hill Start Assist"],
-    body: "van",
-    color: "#f5f6f4",
-    image: "assets/aux-a1.png"
-  },
-  {
-    id: 10,
-    name: "AUX V2",
-    category: "Vans & Pickups",
-    type: "Executive Van",
-    description: "A premium van for business travel and family comfort, with a calm cabin and generous passenger space.",
-    price: 2750000,
-    downpayment: 550000,
-    monthlyPayment: 47900,
-    colors: ["Obsidian Black", "Pearl White", "Titanium Silver", "Graphite Gray"],
-    engine: "2.8L Turbo Diesel",
-    transmission: "6-Speed Automatic",
-    fuel: "Diesel",
-    seats: 8,
-    features: ["Power Sliding Doors", "Captain Seats", "Rear Climate Zone", "360° Camera", "Adaptive Cruise Control"],
-    body: "van",
-    color: "#cfd6dc",
-    image: "assets/aux-a2.png"
-  },
-  {
-    id: 11,
-    name: "AUX P1",
-    category: "Vans & Pickups",
-    type: "Lifestyle Pickup",
-    description: "A rugged pickup for weekday work and weekend escapes, combining durable utility with modern cabin technology.",
-    price: 1725000,
-    downpayment: 345000,
-    monthlyPayment: 30900,
-    colors: ["Obsidian Black", "Pearl White", "Titanium Silver", "Forest Green"],
-    engine: "2.4L Turbo Diesel",
-    transmission: "6-Speed Automatic",
-    fuel: "Diesel",
-    seats: 5,
-    features: ["Trailer Stability Assist", "Rear Differential Lock", "Hill Descent Control", "Wireless Apple CarPlay", "Bed Liner"],
-    body: "pickup",
-    color: "#d8ddd9",
-    image: "assets/aux-s1.png"
-  },
-  {
-    id: 12,
-    name: "AUX P2",
-    category: "Vans & Pickups",
-    type: "Heavy-Duty Pickup",
-    description: "A stronger pickup engineered for demanding loads, rough routes, and confident towing with family-ready comfort.",
-    price: 2150000,
-    downpayment: 430000,
-    monthlyPayment: 38400,
-    colors: ["Obsidian Black", "Pearl White", "Graphite Gray", "Deep Blue"],
-    engine: "2.8L Bi-Turbo Diesel",
-    transmission: "8-Speed Automatic",
-    fuel: "Diesel",
-    seats: 5,
-    features: ["Tow Mode", "360° Camera", "Adaptive Cruise Control", "Skid Plates", "Automatic Emergency Braking"],
-    body: "pickup",
-    color: "#aeb8bf",
-    image: "assets/aux-vans-pickups-random.png"
-  }
+const vehicleSpecs = [
+  ["AUX Aduge 720", "Sedans", "Sport Sedan", 2890000, "2.0L Turbocharged", 5],
+  ["AUX Arvento", "SUVs", "Premium SUV", 2450000, "2.0L Turbo Hybrid", 7],
+  ["AUX Avenza", "Sports Cars", "Sports Coupe", 2180000, "2.0L Turbocharged", 2],
+  ["AUX Calvero", "Sedans", "Executive Sedan", 1780000, "2.0L Turbocharged", 5],
+  ["AUX Draxon", "Pickups & Vans", "Heavy-Duty Pickup", 2390000, "2.8L Bi-Turbo Diesel", 5],
+  ["AUX Gangsini 6X9", "Pickups & Vans", "Passenger Van", 3120000, "2.8L Turbo Diesel", 12],
+  ["AUX Junior VXR", "Sports Cars", "Compact Sports Coupe", 1390000, "1.6L Turbocharged", 2],
+  ["AUX Ravento", "Sports Cars", "Track-Focused Coupe", 2190000, "1.8L Turbocharged", 2],
+  ["AUX Salamaleko GIN", "Sports Cars", "Grand Touring Coupe", 2650000, "2.5L V6", 4],
+  ["AUX Terrano X 24", "SUVs", "Mid-Size SUV", 1980000, "2.0L Turbocharged", 7],
+  ["AUX Torvado", "Sedans", "Luxury Sedan", 3250000, "3.0L Twin-Turbo", 5],
+  ["AUX Veltrix", "Pickups & Vans", "Lifestyle Pickup", 1850000, "2.4L Turbo Diesel", 5],
+  ["AUX Vento GTI 24", "Hatchbacks", "Hot Hatchback", 1690000, "2.0L Turbocharged", 5],
+  ["AUX Veyronis", "Sedans", "Performance Fastback", 3680000, "3.0L Twin-Turbo Hybrid", 5],
+  ["AUX Vallahalla", "SUVs", "Luxury Crossover SUV", 2780000, "2.8L Turbo Diesel", 7],
+  ["AUX Zenvora", "Sedans", "Electric Fastback", 2290000, "Dual Motor Electric", 5]
 ];
+
+const vehicles = vehicleSpecs.map(([name, category, type, price, engine, seats], index) => {
+  const modelName = name === "AUX Vallahalla" ? "AUX_Vallahalla" : name;
+  return {
+    id: index + 1,
+    name,
+    category,
+    type,
+    description: `${type} designed for confident Philippine driving, combining refined comfort, practical technology, and responsive performance.`,
+    price,
+    downpayment: Math.round(price * 0.2),
+    monthlyPayment: Math.round(price * 0.032),
+    colors: ["Obsidian Black", "Pearl White", "Titanium Silver", "Deep Blue"],
+    engine,
+    transmission: engine.includes("Electric") ? "Single-Speed Automatic" : "8-Speed Automatic",
+    fuel: engine.includes("Electric") ? "Electric" : engine.includes("Hybrid") ? "Hybrid" : "Gasoline",
+    seats,
+    features: ["Advanced Driver Assistance", "360° Camera", "Wireless Apple CarPlay", "Adaptive Cruise Control", "Automatic Emergency Braking"],
+    image: `asset/${modelName}.png`,
+    model: `asset/${modelName}.glb`
+  };
+});
 
 const colorMap = {
   "Obsidian Black": "#111217",
@@ -242,7 +52,7 @@ const colorMap = {
 
 const urlParams = new URLSearchParams(window.location.search);
 const requestedCategory = urlParams.get("category") || "";
-const validCategories = ["All Vehicles", "Hatchbacks & Sedan", "SUVs", "Vans & Pickups"];
+const validCategories = ["All Vehicles", "Sedans", "Hatchbacks", "Sports Cars", "SUVs", "Pickups & Vans"];
 let activeCategory = validCategories.includes(requestedCategory) ? requestedCategory : "All Vehicles";
 const initialSearch = urlParams.get("search") || "";
 let searchTerm = initialSearch;
@@ -259,8 +69,17 @@ const searchDrawer = document.querySelector("#searchDrawer");
 const mobilePanel = document.querySelector("#mobilePanel");
 const toast = document.querySelector("#toast");
 const navLinks = document.querySelectorAll(".desktop-nav a");
+const modelOverlay = document.querySelector("#modelViewerOverlay");
+const vehicleModel = document.querySelector("#vehicleModel");
+const modelLoading = document.querySelector("#modelLoading");
+const modelFallback = document.querySelector("#modelFallback");
+const modelViewerTitle = document.querySelector("#modelViewerTitle");
+const toggleAutoRotate = document.querySelector("#toggleAutoRotate");
+const toggleCamera = document.querySelector("#toggleCamera");
 let navigationInProgress = false;
 let navigationEndTimer;
+let activeModel = null;
+let modelLoadRequest = 0;
 
 if (catalogSearch) catalogSearch.value = initialSearch;
 if (siteSearch) siteSearch.value = initialSearch;
@@ -328,6 +147,7 @@ function detailsMarkup(vehicle) {
         <span>Features</span>
         <ul>${vehicle.features.map(feature => `<li>${feature}</li>`).join("")}</ul>
       </div>
+      <button class="model-button" type="button" data-model-id="${vehicle.id}">Open 3D Preview</button>
     </div>
   `;
 }
@@ -371,6 +191,7 @@ function renderVehicles() {
       <button class="detail-button" type="button" data-id="${vehicle.id}">
         ${expandedIds.has(vehicle.id) ? "Hide Details" : "Details"}
       </button>
+      <button class="model-button card-model-button" type="button" data-model-id="${vehicle.id}">3D Preview</button>
       <div class="details-panel">${detailsMarkup(vehicle)}</div>
     </article>
   `).join("");
@@ -412,6 +233,11 @@ categoryButtons.forEach(button => {
 if (grid) {
   grid.addEventListener("click", event => {
     const button = event.target.closest(".detail-button");
+    const modelButton = event.target.closest(".model-button");
+    if (modelButton) {
+      openModelViewer(Number(modelButton.dataset.modelId));
+      return;
+    }
     if (!button) return;
     const id = Number(button.dataset.id);
     if (expandedIds.has(id)) expandedIds.delete(id);
@@ -419,6 +245,101 @@ if (grid) {
     renderVehicles();
   });
 }
+
+async function openModelViewer(id) {
+  if (!modelOverlay || !vehicleModel) return;
+  const vehicle = vehicles.find(item => item.id === id);
+  if (!vehicle) return;
+
+  activeModel = vehicle;
+  const requestId = ++modelLoadRequest;
+  modelViewerTitle.textContent = `${vehicle.name} 3D Preview`;
+  modelLoading.classList.remove("hidden");
+  modelOverlay.classList.add("open");
+  modelOverlay.setAttribute("aria-hidden", "false");
+  document.body.classList.add("viewer-open");
+  modelLoading.textContent = "Loading 3D model...";
+  modelLoading.classList.remove("hidden");
+  modelFallback.src = vehicle.image;
+  modelFallback.alt = `${vehicle.name} preview`;
+  modelFallback.classList.remove("hidden");
+
+  if (!customElements.get("model-viewer")) {
+    try {
+      await Promise.race([
+        customElements.whenDefined("model-viewer"),
+        new Promise((_, reject) => setTimeout(() => reject(new Error("3D viewer component timed out")), 10000))
+      ]);
+    } catch (error) {
+      modelLoading.textContent = "The 3D viewer could not be loaded. Check your internet connection and reload the page.";
+      console.error("3D viewer component unavailable:", error);
+      return;
+    }
+  }
+
+  if (requestId !== modelLoadRequest || activeModel !== vehicle || !modelOverlay.classList.contains("open")) return;
+
+  vehicleModel.removeAttribute("auto-rotate");
+  vehicleModel.setAttribute("camera-controls", "");
+  vehicleModel.setAttribute("src", vehicle.model);
+  vehicleModel.setAttribute("alt", `${vehicle.name} interactive 3D model`);
+  toggleAutoRotate.textContent = "Auto Rotate: Off";
+  toggleCamera.textContent = "Free Camera: On";
+  if (document.fullscreenEnabled && modelOverlay.requestFullscreen) {
+    modelOverlay.requestFullscreen().catch(error => {
+      console.warn("Fullscreen preview unavailable:", error);
+    });
+  }
+}
+
+function closeModelViewer() {
+  if (!modelOverlay || !vehicleModel) return;
+  modelOverlay.classList.remove("open");
+  modelOverlay.setAttribute("aria-hidden", "true");
+  document.body.classList.remove("viewer-open");
+  vehicleModel.removeAttribute("src");
+  modelLoadRequest += 1;
+  modelFallback.classList.add("hidden");
+  activeModel = null;
+  if (document.fullscreenElement && document.exitFullscreen) {
+    document.exitFullscreen().catch(error => {
+      console.warn("Unable to exit fullscreen preview:", error);
+    });
+  }
+}
+
+if (vehicleModel) {
+  vehicleModel.addEventListener("load", () => {
+    setTimeout(() => {
+      if (!activeModel || !vehicleModel.loaded) return;
+      modelFallback.classList.add("hidden");
+      modelLoading.classList.add("hidden");
+    }, 200);
+  });
+  vehicleModel.addEventListener("error", () => {
+    modelFallback.classList.remove("hidden");
+    modelLoading.textContent = "Unable to load this 3D model. Please reload and try again.";
+    modelLoading.classList.remove("hidden");
+  });
+}
+
+if (toggleAutoRotate) {
+  toggleAutoRotate.addEventListener("click", () => {
+    const enabled = vehicleModel.hasAttribute("auto-rotate");
+    vehicleModel.toggleAttribute("auto-rotate", !enabled);
+    toggleAutoRotate.textContent = `Auto Rotate: ${enabled ? "Off" : "On"}`;
+  });
+}
+
+if (toggleCamera) {
+  toggleCamera.addEventListener("click", () => {
+    const enabled = vehicleModel.hasAttribute("camera-controls");
+    vehicleModel.toggleAttribute("camera-controls", !enabled);
+    toggleCamera.textContent = `Free Camera: ${enabled ? "Off" : "On"}`;
+  });
+}
+
+document.querySelector("#closeModelViewer")?.addEventListener("click", closeModelViewer);
 
 if (catalogSearch) {
   catalogSearch.addEventListener("input", event => {
