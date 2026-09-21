@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AUX Automotive | Explore Vehicles</title>
+  <title>AUX Automotive | Home</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -14,17 +14,14 @@
 
     <nav class="desktop-nav" aria-label="Primary navigation">
       <a href="#home">Home</a>
-      <a href="vehicles.html">Explore Vehicles</a>
+      <a href="vehicles.html">Vehicles</a>
       <a href="#about">About AUX</a>
       <a href="#services">Services</a>
       <a href="#contact">Contact</a>
     </nav>
 
     <div class="header-actions">
-      <button class="icon-button" id="openSearch" type="button" aria-label="Open search">
-        <span></span>
-      </button>
-      <button class="menu-button" id="menuButton" type="button" aria-label="Open menu" aria-expanded="false">
+      <button class="menu-button" id="menuButton" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobilePanel">
         <span></span><span></span><span></span>
       </button>
     </div>
@@ -38,38 +35,34 @@
       <button class="close-button" id="closeMenu" type="button">Close</button>
     </div>
     <a href="#home">Home</a>
-    <a href="vehicles.html">Explore Vehicles</a>
+    <a href="vehicles.html">Vehicles</a>
     <a href="#about">About AUX</a>
     <a href="#services">Services</a>
     <a href="#contact">Contact</a>
-    <button class="mobile-search" id="mobileSearch" type="button">Search Vehicles</button>
   </aside>
-
-  <div class="search-drawer" id="searchDrawer" aria-hidden="true">
-    <div class="search-inner">
-      <label for="siteSearch">Search AUX vehicles</label>
-      <input id="siteSearch" type="search" placeholder="Search by name, SUV, pickup, comfort...">
-      <button id="closeSearch" type="button">Close</button>
-    </div>
-  </div>
 
   <main>
     <section class="hero" id="home">
       <div class="hero-copy">
         <p class="eyebrow">Driven Beyond Limits</p>
-        <h1>Explore AUX Vehicles</h1>
-        <p>Discover the 2026 AUX lineup designed for every journey.</p>
+        <h1>Drive Beyond Ordinary</h1>
+        <p>Discover the 2026 AUX lineup, designed for confident performance, everyday comfort, and modern mobility.</p>
         <a class="primary-cta" href="vehicles.html">Explore Vehicles</a>
+      </div>
+      <div class="hero-visual">
+        <span class="hero-visual-label">2026 COLLECTION</span>
+        <img class="hero-car" src="asset/AUX Aduge 720.png" alt="AUX Aduge 720 performance sedan">
+        <span class="hero-visual-caption">AUX Aduge 720 <strong>Performance Sedan</strong></span>
       </div>
     </section>
 
     <section class="about-section featured-preview">
       <div>
         <p class="eyebrow">Find your fit</p>
-        <h2>A new lineup is coming soon.</h2>
+        <h2>Find the right AUX for your journey.</h2>
       </div>
       <div>
-        <p>We are preparing a new range of AUX vehicles. Check back soon for the updated product lineup.</p>
+        <p>From efficient city cars to capable SUVs and performance-focused models, explore a lineup built around the way you drive.</p>
         <a class="primary-cta" href="vehicles.html">View Vehicle Catalog</a>
       </div>
     </section>
@@ -127,14 +120,6 @@
     </div>
     <div class="footer-links">
       <div>
-        <h3>Explore</h3>
-        <a href="#home">Home</a>
-        <a href="vehicles.html">Explore Vehicles</a>
-        <a href="#about">About AUX</a>
-        <a href="#services">Services</a>
-        <a href="#contact">Contact</a>
-      </div>
-      <div>
         <h3>Vehicles</h3>
         <a href="vehicles.html?category=Sedans">Sedans</a>
         <a href="vehicles.html?category=Sports%20Cars">Sports Cars</a>
@@ -158,6 +143,22 @@
   </footer>
 
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <div class="modal-backdrop" id="requestModal" aria-hidden="true">
+    <section class="request-modal" role="dialog" aria-modal="true" aria-labelledby="requestModalTitle" tabindex="-1">
+      <button class="modal-close" id="closeRequestModal" type="button" aria-label="Close request information form">×</button>
+      <p class="eyebrow">AUX concierge</p>
+      <h2 id="requestModalTitle">Request Information</h2>
+      <p class="modal-intro">Tell us where to send the latest AUX lineup and pricing information.</p>
+      <form id="requestForm" novalidate>
+        <label for="requestName">Full name<input id="requestName" name="name" autocomplete="name" required></label>
+        <label for="requestEmail">Email address<input id="requestEmail" name="email" type="email" autocomplete="email" required></label>
+        <label for="requestVehicle">Vehicle of interest<select id="requestVehicle" name="vehicle"><option value="">Any AUX vehicle</option><option>AUX Aduge 720</option><option>AUX Arvento</option><option>AUX Veyronis</option></select></label>
+        <p class="form-error" id="requestFormError" role="alert"></p>
+        <button class="primary-cta" type="submit">Send Request</button>
+        <p class="form-success" id="requestFormSuccess" role="status" tabindex="-1"></p>
+      </form>
+    </section>
+  </div>
   <script src="script.js"></script>
 </body>
 </html>
